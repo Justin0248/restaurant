@@ -1,0 +1,18 @@
+.menu_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.category {
+    display: flex;
+    flex-direction: column;
+    color: #FFBB00;
+    border-bottom: 1px solid #FFBB00;
+}
+
+.menu_items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+}

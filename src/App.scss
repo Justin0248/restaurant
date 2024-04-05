@@ -1,0 +1,28 @@
+.App {
+    text-align: center;
+  }
+  
+  .App-body {
+    background-color: rgb(24, 24, 24);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  li {
+    list-style: none;
+  }
+.section {
+color: #a1a09e;
+
+display: flex;
+margin-left: 250px;
+}
+.section_border {
+  border-bottom: 1px solid #FFBB00;
+  border-width: 2px 5rem;
+  border-image: linear-gradient(to right, #FFBB00 50%, transparent 100%) 100% 1;
+}
