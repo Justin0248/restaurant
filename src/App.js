@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.scss';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import Menulist from './components/Menu'
 import Header from './components/Header'
@@ -16,12 +17,27 @@ function App() {
     });
   }, []);
   return (
+    <Router>
     <div className="App">
       <Header/>
       <div className="App-body">
-        <Menulist data={data}></Menulist>
+      <Routes>
+        <Route exact
+        path ="/"/>
+
+        <Route exact
+        path ="/menu"
+        element={<Menulist data={data}/>}/>
+        
+        <Route exact
+        path ="/about"/>
+      </Routes>
       </div>
     </div>
+    </Router>
+
+
+
   );
 }
 
