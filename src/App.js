@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import './App.scss';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import './App.scss'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import axios from 'axios'
+import Home from './components/Home'
 import Menulist from './components/Menu'
 import Header from './components/Header'
-
-function App() {
+import Cart from './components/Cart'
+function App () {
   const [data, setData] = useState(null);
+  const [cart, setCart] = useState([])
+
   useEffect(() => {
     axios.get('http://localhost:5000/menu')
     .then(response => {
@@ -21,13 +24,15 @@ function App() {
     <div className="App">
       <Header/>
       <div className="App-body">
+        <Cart prop={cart}/>
       <Routes>
         <Route exact
-        path ="/"/>
+        path ="/"
+        element ={<Home />}/>
 
         <Route exact
         path ="/menu"
-        element={<Menulist data={data}/>}/>
+        element={<Menulist data={data} addItem={setCart}/>}/>
         
         <Route exact
         path ="/about"/>

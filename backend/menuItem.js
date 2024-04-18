@@ -1,108 +1,108 @@
 const menuItems = [
   {
-    id: 8,
+    id: 1,
     name: 'Chicken Sandwich',
     price: 4.99,
     category: 'Main'
   },
   {
-    id: 9,
+    id: 2,
     name: 'Spaghetti Bolognese',
     price: 7.99,
     category: 'Main'
   },
   {
-    id: 10,
+    id: 3,
     name: 'Margherita Pizza',
     price: 9.99,
     category: 'Main'
   },
   {
-    id: 11,
+    id: 4,
     name: 'Hamburger',
     price: 5.99,
     category: 'Main'
   },
   {
-    id: 12,
+    id: 5,
     name: 'Cheeseburger',
     price: 6.49,
     category: 'Main'
   },
   {
-    id: 13,
+    id: 6,
     name: 'Veggie Burger',
     price: 5.49,
     category: 'Main'
   },
   {
-    id: 14,
+    id: 7,
     name: 'Chicken Wings (8 pcs)',
     price: 6.99,
     category: 'Appetizers'
   },
   {
-    id: 15,
+    id: 8,
     name: 'Nachos',
     price: 5.99,
     category: 'Appetizers'
   },
   {
-    id: 16,
+    id: 9,
     name: 'Cheese Platter',
     price: 8.99,
     category: 'Appetizers'
   },
   {
-    id: 17,
+    id: 10,
     name: 'Onion Rings',
     price: 3.99,
     category: 'Appetizers'
   },
   {
-    id: 18,
+    id: 11,
     name: 'Garlic Bread',
     price: 3.49,
     category: 'Appetizers'
   },
   {
-    id: 19,
+    id: 12,
     name: 'Mozzarella Sticks',
     price: 4.99,
     category: 'Appetizers'
   },
   {
-    id: 20,
+    id: 13,
     name: 'Soda (Large)',
     price: 2.49,
     category: 'Drinks'
   },
   {
-    id: 21,
+    id: 14,
     name: 'Mango Lassi',
     price: 3.49,
     category: 'Drinks'
   },
   {
-    id: 22,
+    id: 15,
     name: 'Iced Coffee',
     price: 4.99,
     category: 'Drinks'
   },
   {
-    id: 23,
+    id: 16,
     name: 'Lemonade',
     price: 2.99,
     category: 'Drinks'
   },
   {
-    id: 24,
+    id: 17,
     name: 'Hot Chocolate',
     price: 3.99,
     category: 'Drinks'
   },
   {
-    id: 25,
+    id: 18,
     name: 'Fruit Punch',
     price: 3.49,
     category: 'Drinks'

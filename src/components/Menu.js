@@ -1,10 +1,18 @@
-import React from 'react';
+import React from 'react'
 import './Menu.scss'
-export default function Menulist({data}) {
+import Button from './cart/Button'
+import { useEffect, useState } from 'react';
+
+export default function Menulist({data, props, addItem}) {
 if (!data) {
     return <p>Loading...</p>;
 }
+const [count, setCount] = useState(0)
 
+const handleEvent = (id, name, price) => {
+addItem(prevCart => [...prevCart, { count, name, price }])
+setCount(count + 1);
+}
 const categories = [...new Set(data.map(item => item.category))];
 
 return (
@@ -16,7 +24,12 @@ return (
             <ol className="menu_items">
               {data.filter(item => item.category === category).map(item => (
                 <li key={item.id}>
-                 {item.id}. {item.name}: ${item.price}
+                 {item.id}. {item.name}: ${item.price} 
+                 <div>
+                  <button name={item.id} onClick={() => {handleEvent(item.id, item.name, item.price)}}>
+                  Add to cart
+                  </button>
+                 </div>
                 </li>
               ))}
             </ol>
