@@ -7,7 +7,7 @@ export default function Menulist({data, props, addItem}) {
 if (!data) {
     return <p>Loading...</p>;
 }
-const [count, setCount] = useState(0)
+const [count, setCount] = useState(1)
 
 const handleEvent = (id, name, price) => {
 addItem(prevCart => [...prevCart, { count, name, price }])
