@@ -6,10 +6,11 @@ import Home from './components/Home'
 import Menulist from './components/Menu'
 import Header from './components/Header'
 import Cart from './components/Cart'
+import menuItems from './menu/MenuItem'
 function App () {
   const [data, setData] = useState(null);
   const [cart, setCart] = useState([])
-
+  const [count, setCount] = useState(1);
   useEffect(() => {
     axios.get('http://localhost:5000/menu')
     .then(response => {
@@ -19,12 +20,17 @@ function App () {
       console.error('Error fetching data from the server', error)
     });
   }, []);
+
+  const itemCount = (count) => {
+    setCount(count);
+  }
+
   return (
     <Router>
     <div className="App">
       <Header/>
       <div className="App-body">
-        <Cart prop={cart}/>
+        <Cart prop={cart} count={count}/>
       <Routes>
         <Route exact
         path ="/"
@@ -32,7 +38,7 @@ function App () {
 
         <Route exact
         path ="/menu"
-        element={<Menulist data={data} addItem={setCart}/>}/>
+        element={<Menulist data={menuItems} addItem={setCart} props={cart} itemCount={itemCount}/>}/>
         
         <Route exact
         path ="/about"/>
