@@ -1,25 +1,19 @@
-import React from 'react'
+import React, { useState} from 'react';
 import './Menu.scss'
-import Button from './cart/Button'
-import { useEffect, useState } from 'react';
+import CartButton from './cartButton'
 
-export default function Menulist({data, props, addItem, itemCount}) {
+export default function Menulist({data, addItem, addCount}) {
 if (!data) {
     return <p>Loading...</p>;
 }
-const [button, setButton] = useState(false);
-const [count, setCount] = useState(1);
-
-const handleEvent = (id, name, price) => {
-setButton(true);
-addItem(prevCart => [...prevCart, { id, name, price }])}
-
-const handleInput = (event) => {
-  setCount(event.target.value)
- itemCount(event.target.value);
-}
-
+  
 const categories = [...new Set(data.map(item => item.category))];
+  const handleEvent = (id, name, price, count) => {
+      addItem(id, name, price, count)
+  }
+  const handleCount = (id, count, name) => {
+     addCount(id, count, name)
+  }
 
 return (
       <div className = "menu_container">
@@ -32,21 +26,12 @@ return (
                 <li key={item.id}>
                  {item.id}. {item.name}: ${item.price} 
                  <div>
-                  {button ? (
-                  <input 
-                  type='number' 
-                  key={item.id}
-                  value={count}
-                  onChange={handleInput}
-                  ></input>
-                  ):(
-                  <button name={item.id} 
-                  key={item.id}
-                  onClick={() => 
-                  {handleEvent(item.id, item.name, item.price);}}>
-                  Add to cart
-                  </button>
-              )}
+                 <CartButton 
+                 name={item.name} 
+                 price={item.price}
+                 handleEvent={handleEvent}
+                 handleCount={handleCount}
+                 ></CartButton>
                  </div>
                 </li>
               ))}

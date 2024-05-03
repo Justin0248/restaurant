@@ -3,17 +3,17 @@ import react, { useEffect, useState } from 'react';
 export default function Cart( {prop, count} ) {
 
  const itemCount = prop.map((item) =>
-     <li>{count}: {item.name}</li>)
+    count > 0 && <li>{item.count}: {item.name}</li>)
      const subTotal = prop.reduce((accumulator, current) => { 
-        return accumulator + current.price; 
+        return accumulator + current.price * current.count; 
     }, 0)
 return (
-    <div>
+    <>
         {itemCount}
             <div> 
             {subTotal > 0 && 
                 <span> subtotal: {parseFloat(subTotal).toFixed(2)}</span>
             }
             </div>
-    </div>
+    </>
 );}
