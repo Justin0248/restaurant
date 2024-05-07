@@ -18,8 +18,8 @@ setCount(event.target.value)
             value={count}
             onChange={handleInput}>
             </input>
-            <div>  
-            </div>
+            <span>  
+            </span>
             <button 
             key="submit"
             value='1'

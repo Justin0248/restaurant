@@ -1,0 +1,29 @@
+.display_cart {
+    border: transparent;
+    border-radius:10px; 
+    width: 50px;
+    height: 25px;
+    outline-style: solid;
+    outline-color: #ffbb0065;
+    outline-width: 1.5px;
+background-color: rgb(20, 20, 20);
+color: #FFBB00;
+&:hover {
+    background-color: rgb(30, 30, 30);
+    outline-color: #FFBB00;
+}
+&:active {
+    background-color: white;  
+}
+}
+.cart_item {
+    display: inline-block;
+    border-radius: 10px;
+    border: solid #ffbb00a9 1px;
+    margin-top: 5px;
+    padding: 2px 10px;
+}
+
+.cart_item_border {
+
+}

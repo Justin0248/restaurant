@@ -11,7 +11,6 @@ import menuItems from './menu/MenuItem'
 function App () {
   const [data, setData] = useState(null);
   const [cart, setCart] = useState([])
-  const [count, setCount] = useState(1);
   const addItem = (id, name, price, count) => {
     setCart(prevCart => [...prevCart, {id, name, price, count}])
   }
@@ -37,7 +36,7 @@ function App () {
     <div className="App">
       <Header/>
       <div className="App-body">
-        <Cart prop={cart} count={count}/>
+        <Cart prop={cart}/>
       <Routes>
         <Route exact
         path ="/"
