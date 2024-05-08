@@ -1,4 +1,4 @@
-import react, { useState, useEffect} from 'react';
+import { React, useState } from 'react';
 
 
 export default function CartButton({name, price, handleEvent, handleCount }) {
@@ -32,7 +32,6 @@ setCount(event.target.value)
             </>
             ):(
             <button 
-            name={name} 
             onClick={() => {
             handleEvent(id, name, price, count); 
             setButton(true);

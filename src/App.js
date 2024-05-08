@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 import './App.scss'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import axios from 'axios'
@@ -8,6 +8,7 @@ import Header from './components/Header'
 import Cart from './components/Cart'
 import CartButton from './components/cartButton'
 import menuItems from './menu/MenuItem'
+import Admin from './components/Admin'
 function App () {
   const [data, setData] = useState(null);
   const [cart, setCart] = useState([])
@@ -18,18 +19,15 @@ function App () {
     const changeCount = cart.map(item => (item.id === id && item.name === name ? {...item, count: parseFloat(count)} : item))
     setCart(changeCount)
   }
-  useEffect(() => {
-    axios.get('http://localhost:5000/menu')
-    .then(response => {
-      setData(response.data)
-    })
-    .catch(error => {
-       console.error('Error fetching data from the server', error)
-    });
-  }, []);
-  useEffect(() => {
-    console.log(cart)
-  }, [cart])
+  // useEffect(() => {
+  //   axios.get('http://localhost:5000/menu')
+  //   .then(response => {
+  //     setData(response.data)
+  //   })
+  //   .catch(error => {
+  //      console.error('Error fetching data from the server', error)
+  //   });
+  // }, []);
 
   return (
     <Router>
@@ -48,6 +46,9 @@ function App () {
         
         <Route exact
         path ="/about"/>
+        <Route exact
+        path ="/admin"
+        element ={<Admin data={menuItems}/>}/>
       </Routes>
       </div>
     </div>
