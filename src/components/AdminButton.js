@@ -47,7 +47,7 @@ const input = <span>
         onFocus={() => {handleFocus('category')}}>
         <option value=''>--select category--</option>    
         {categories.map((category) => {
-    return <option value={category}>{category}</option>})}
+    return <option key={category} value={category}>{category}</option>})}
     </select>
     </span>
 const search = <ul>{category ? (menu.filter(item => item.category === category).map((item) => {
@@ -55,17 +55,17 @@ const search = <ul>{category ? (menu.filter(item => item.category === category).
         let input = name.toLowerCase();
         let inputSearch = item.name.toLowerCase()
         if (input === inputSearch.substring(0, name.length)){
-        return <button>{item.name}</button>}
+        return <button key={item.id}>{item.name}</button>}
     }
     else {
-    return <button>{item.name}</button>
+    return <button key={item.id}>{item.name}</button>
     }
 })) : (menu.map((item) => {
     if (name) {
         let input = name.toLowerCase();
         let inputSearch = item.name.toLowerCase()
         if (input === inputSearch.substring(0, name.length)){
-        return <button>{item.name}</button>}
+        return <button key={item.id}>{item.name}</button>}
     }
 }))}
 </ul>
