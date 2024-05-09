@@ -51,16 +51,9 @@ const input = <span>category: <div></div>
     }, [name])
 const search = <ul>{menu.filter(item => item.category === category).map((item) => {
     if (name) {
-        let input = ''
-        for (let i = 0; i < name.length; i++) {
-            if (name[i] === item.name[i]) {
-                input += name[i]
-            }
-            else {
-                return <li></li>
-            }
-        }
-        if (input === item.name.substring(0, input.length)){
+        let input = name.toLowerCase();
+        let inputSearch = item.name.toLowerCase()
+        if (input === inputSearch.substring(0, name.length)){
         return <li>{item.name}</li>}
     }
     else {
