@@ -36,16 +36,16 @@ const handleEvent = ((event) => {
     }
 })
 
-const input = <span>category: <div></div>
+const input = <span>
 <select value={category}
         onChange={handleEvent}
         onBlur={handleBlur}
         onFocus={() => {handleFocus('category')}}>
-        <option>--select category--</option>    
+        <option value=''>--select category--</option>    
         {categories.map((category) => {
     return <option value={category}>{category}</option>})}
     </select>
-</span>
+    </span>
 const search = <ul>{category ? (menu.filter(item => item.category === category).map((item) => {
     if (name) {
         let input = name.toLowerCase();
@@ -70,19 +70,19 @@ return (
     <form action={handleSubmit}>
     {button && type == 'add' ? (
     <span className='admin_button_container'>
-        name: <input type='text' 
+        Name: <input type='text' 
         value={name}
         onFocus={() => {handleFocus('name')}}
         onBlur={handleBlur}
         onChange={handleEvent}>
     </input>
-        price: <input type='text' 
+        Price: <input type='text' 
         value={price}
         onFocus={() => {handleFocus('price')}}
         onBlur={handleBlur}
         onChange={handleEvent}>
     </input>
-        {input}
+        Category: {input}
         <button>Submit</button>
     </span>
     ):(button && type == 'edit' ?(
