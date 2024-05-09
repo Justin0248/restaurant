@@ -46,10 +46,7 @@ const input = <span>category: <div></div>
     return <option value={category}>{category}</option>})}
     </select>
 </span>
-    useEffect(() => {
-
-    }, [name])
-const search = <ul>{menu.filter(item => item.category === category).map((item) => {
+const search = <ul>{category ? (menu.filter(item => item.category === category).map((item) => {
     if (name) {
         let input = name.toLowerCase();
         let inputSearch = item.name.toLowerCase()
@@ -59,7 +56,14 @@ const search = <ul>{menu.filter(item => item.category === category).map((item) =
     else {
     return <li>{item.name}</li>
     }
-})}
+})) : (menu.map((item) => {
+    if (name) {
+        let input = name.toLowerCase();
+        let inputSearch = item.name.toLowerCase()
+        if (input === inputSearch.substring(0, name.length)){
+        return <li>{item.name}</li>}
+    }
+}))}
 </ul>
 
 return (
