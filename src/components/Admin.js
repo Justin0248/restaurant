@@ -4,8 +4,10 @@ import './Admin.scss'
 
 export default function Admin({ data }) {
     const categories = [... new Set(data.map(item => item.category ))]
-    const editMenu = ((name, price, category) => {
-        return [{name, price, category}]
+    const editMenu = ((id, name, price, category) => {
+        if (name && price && category !== ''){
+        return data.push({id, name, price, category})
+        }
     })
 
     return <div className="control_container">

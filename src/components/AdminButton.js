@@ -1,25 +1,29 @@
 import { React, useState, useEffect } from 'react'
 import './Admin.scss'
 
-
 export default function AdminButton({ type, categories, editMenu, menu }) {
 const [button, setButton] = useState(false);
 const [name, setName] = useState('');
-const [price, setPrice] = useState();
+const [price, setPrice] = useState('');
 const [category, setCategory] = useState('');
 const [focus, setFocus] = useState(null)
 const [submit, setSubmit] = useState(false);
+
+const handleSubmit = () => {
+submit ? setSubmit(false) : setSubmit(true);
+}
+
 const handleFocus = (id) => {
     setFocus(id)
 }
 const handleBlur = () => {
     setFocus(null)
 }
-const handleSubmit = (event) => {
-    event.preventDefault();
-    editMenu(name,price,category);
-    setSubmit(true);
-}
+
+useEffect(() => {
+console.log(menu)
+}, [submit])
+
 const handleEvent = ((event) => {
     switch(focus) {
         case 'name':
@@ -51,23 +55,23 @@ const search = <ul>{category ? (menu.filter(item => item.category === category).
         let input = name.toLowerCase();
         let inputSearch = item.name.toLowerCase()
         if (input === inputSearch.substring(0, name.length)){
-        return <li>{item.name}</li>}
+        return <button>{item.name}</button>}
     }
     else {
-    return <li>{item.name}</li>
+    return <button>{item.name}</button>
     }
 })) : (menu.map((item) => {
     if (name) {
         let input = name.toLowerCase();
         let inputSearch = item.name.toLowerCase()
         if (input === inputSearch.substring(0, name.length)){
-        return <li>{item.name}</li>}
+        return <button>{item.name}</button>}
     }
 }))}
 </ul>
 
 return (
-    <form action={handleSubmit}>
+    <span>
     {button && type == 'add' ? (
     <span className='admin_button_container'>
         Name: <input type='text' 
@@ -83,7 +87,9 @@ return (
         onChange={handleEvent}>
     </input>
         Category: {input}
-        <button>Submit</button>
+        <button onClick={() => {editMenu(menu.length, name, price, category); handleSubmit()}}>
+        Submit
+        </button>
     </span>
     ):(button && type == 'edit' ?(
         <span>
@@ -99,5 +105,5 @@ return (
     <button
     onClick={() => setButton(true)}>
     {type}</button>))}
-    </form>
+    </span>
 )}
