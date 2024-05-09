@@ -2,14 +2,13 @@ import { React, useState, useEffect } from 'react'
 import './Admin.scss'
 
 
-export default function AdminButton({ type, categories, editMenu }) {
+export default function AdminButton({ type, categories, editMenu, menu }) {
 const [button, setButton] = useState(false);
 const [name, setName] = useState('');
 const [price, setPrice] = useState();
 const [category, setCategory] = useState('');
 const [focus, setFocus] = useState(null)
 const [submit, setSubmit] = useState(false);
-
 const handleFocus = (id) => {
     setFocus(id)
 }
@@ -17,9 +16,9 @@ const handleBlur = () => {
     setFocus(null)
 }
 const handleSubmit = (event) => {
-event.preventDefault();
-editMenu(name,price,category);
-setSubmit(true);
+    event.preventDefault();
+    editMenu(name,price,category);
+    setSubmit(true);
 }
 const handleEvent = ((event) => {
     switch(focus) {
@@ -47,10 +46,32 @@ const input = <span>category: <div></div>
     return <option value={category}>{category}</option>})}
     </select>
 </span>
+    useEffect(() => {
+
+    }, [name])
+const search = <ul>{menu.filter(item => item.category === category).map((item) => {
+    if (name) {
+        let input = ''
+        for (let i = 0; i < name.length; i++) {
+            if (name[i] === item.name[i]) {
+                input += name[i]
+            }
+            else {
+                return <li></li>
+            }
+        }
+        if (input === item.name.substring(0, input.length)){
+        return <li>{item.name}</li>}
+    }
+    else {
+    return <li>{item.name}</li>
+    }
+})}
+</ul>
 
 return (
     <form action={handleSubmit}>
-    {button ? (
+    {button && type == 'add' ? (
     <span className='admin_button_container'>
         name: <input type='text' 
         value={name}
@@ -67,10 +88,19 @@ return (
         {input}
         <button>Submit</button>
     </span>
+    ):(button && type == 'edit' ?(
+        <span>
+        {input}
+        <input type='search'
+        onFocus={() => {handleFocus('name')}}
+        onBlur={handleBlur}
+        onChange={handleEvent}>     
+        </input>
+        {search}
+        </span>
     ):(
     <button
     onClick={() => setButton(true)}>
-    {type}</button>
-        )}
+    {type}</button>))}
     </form>
 )}
