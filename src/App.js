@@ -12,9 +12,11 @@ import Admin from './components/Admin'
 function App () {
   const [data, setData] = useState(null);
   const [cart, setCart] = useState([])
+  //function for customer to add item to cart
   const addItem = (id, name, price, count) => {
     setCart(prevCart => [...prevCart, {id, name, price, count}])
   }
+  //function to count amount of items set to cart
   const addCount = (id, count, name) => {
     const changeCount = cart.map(item => (item.id === id && item.name === name ? {...item, count: parseFloat(count)} : item))
     setCart(changeCount)

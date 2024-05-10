@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import './Admin.scss'
 
-export default function AdminButton({ type, categories, editMenu, menu }) {
+export default function AdminButton({ type, categories, AddtoMenu, menu }) {
 const [button, setButton] = useState(false);
 const [name, setName] = useState('');
 const [price, setPrice] = useState('');
@@ -9,10 +9,16 @@ const [category, setCategory] = useState('');
 const [focus, setFocus] = useState(null)
 const [submit, setSubmit] = useState(false);
 
+useEffect(() => {
+    console.log(menu)
+},[submit])
+
+//handles submit
 const handleSubmit = () => {
 submit ? setSubmit(false) : setSubmit(true);
 }
 
+//handles what input is being focused on
 const handleFocus = (id) => {
     setFocus(id)
 }
@@ -20,10 +26,7 @@ const handleBlur = () => {
     setFocus(null)
 }
 
-useEffect(() => {
-console.log(menu)
-}, [submit])
-
+//handles event depending on what is being edited
 const handleEvent = ((event) => {
     switch(focus) {
         case 'name':
@@ -40,6 +43,7 @@ const handleEvent = ((event) => {
     }
 })
 
+//function that lists categories
 const input = <span>
 <select value={category}
         onChange={handleEvent}
@@ -50,6 +54,8 @@ const input = <span>
     return <option key={category} value={category}>{category}</option>})}
     </select>
     </span>
+
+//function that searches for item based on name and/or category
 const search = <ul>{category ? (menu.filter(item => item.category === category).map((item) => {
     if (name) {
         let input = name.toLowerCase();
@@ -70,29 +76,33 @@ const search = <ul>{category ? (menu.filter(item => item.category === category).
 }))}
 </ul>
 
+
 return (
     <span>
+        {/*button to add new items*/}
     {button && type == 'add' ? (
     <span className='admin_button_container'>
+          {/*inputs for name, price, and category*/}
         Name: <input type='text' 
         value={name}
         onFocus={() => {handleFocus('name')}}
         onBlur={handleBlur}
         onChange={handleEvent}>
     </input>
-        Price: <input type='text' 
+        Price: <input type='number' 
         value={price}
         onFocus={() => {handleFocus('price')}}
         onBlur={handleBlur}
         onChange={handleEvent}>
     </input>
         Category: {input}
-        <button onClick={() => {editMenu(menu.length, name, price, category); handleSubmit()}}>
+        <button onClick={() => {AddtoMenu(menu.length + 1, name, price, category); handleSubmit()}}>
         Submit
         </button>
     </span>
     ):(button && type == 'edit' ?(
         <span>
+              {/*button to edit items*/}
         {input}
         <input type='search'
         onFocus={() => {handleFocus('name')}}
@@ -101,9 +111,11 @@ return (
         </input>
         {search}
         </span>
-    ):(
+    ):(<>  
+    {/*button to submit update*/}
     <button
     onClick={() => setButton(true)}>
-    {type}</button>))}
+    {type}</button>
+    </>))}
     </span>
 )}

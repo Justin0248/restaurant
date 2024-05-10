@@ -3,8 +3,10 @@ import AdminButton from "./AdminButton";
 import './Admin.scss'
 
 export default function Admin({ data }) {
+    //array of categories
     const categories = [... new Set(data.map(item => item.category ))]
-    const editMenu = ((id, name, price, category) => {
+    //function to add new items to menu
+    const AddtoMenu = ((id, name, price, category) => {
         if (name && price && category !== ''){
         return data.push({id, name, price, category})
         }
@@ -14,13 +16,13 @@ export default function Admin({ data }) {
             <AdminButton
             type={'add'}
             categories={categories}
-            editMenu={editMenu}
+            AddtoMenu={AddtoMenu}
             menu={data}>
             </AdminButton>
             <AdminButton
             type={'edit'}
             categories={categories}
-            editMenu={editMenu}
+            AddtoMenu={AddtoMenu}
             menu={data}>
             </AdminButton>
     </div>
